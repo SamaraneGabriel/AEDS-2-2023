@@ -7,7 +7,7 @@ class PalindromoRecursivo{
 
 	/*Método para comparar a igualdade de duas Strings
 	 * Param: String str1, String str2
-	 * Retorno: True se STR1 = STR2, else False
+	 * Retorno: True se STR1 == STR2, else False
        							*/
 
 	public static boolean strCmpr(String str1, String str2){
