@@ -1,3 +1,8 @@
+/*
+@author: Gabriel Samarane Ribeiro
+@Atividade do TP1 para AEDS2 2023/2
+*/
+
 class PalindromoRecursivo{
 
 	/*Método para comparar a igualdade de duas Strings
