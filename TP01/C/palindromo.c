@@ -17,7 +17,6 @@
 bool isPalindromo(char* str){
 	bool resp = true;
 	for(int i = 0, j = strlen(str)-1; i < strlen(str)/2; i++, j--){
-		printf("%c, %c",str[i],str[j]);
 		if(str[i] != str[j]){
 			resp = false;
 			i = strlen(str);
@@ -29,21 +28,17 @@ bool isPalindromo(char* str){
 
 
 // metodo principal
-//
+
 int main(){
 		
 	char* str = (char*) malloc(100*sizeof(char));
-
-	char* ptr = NULL;
 	
 	while(strcmp(str,"FIM") != 0){
-		fgets(str,sizeof(str),stdin);
-	
-		ptr = strchr(str,'\n');
-		if(ptr != NULL){
-			*ptr = '\0';
-		}
-
+		fgets(str,100,stdin);
+		size_t len = strlen(str);
+		if (len > 0 && str[len-1] == '\n') {
+		    str[len-1] = '\0';
+		}	
 		if(strcmp(str,"FIM") != 0){
 			if(isPalindromo(str)){
 				printf("SIM\n");
@@ -53,6 +48,5 @@ int main(){
 			}
 		}
 	}
-	free(str);
 	return 0;
 }
