@@ -109,10 +109,10 @@ class Is{
 		int contador = 0;
 		if(isAlpha(str)){
 			for(int i = 0; i < str.length(); i++){
-          if(isVogalChar(str.charAt(i))){
-            contador++;
-          }
-			  }
+          		if(isVogalChar(str.charAt(i))){
+            		contador++;
+          		}
+			 }
 		}
 		 return contador == str.length() ? true:false;
 	}
@@ -143,7 +143,7 @@ class Is{
 		boolean resp = true;
 		for(int i = 0; i < str.length(); i++){
 		  char c = str.charAt(i);
-			if(!('0' <= c  && c <= '9')){
+			if(!(isNum(c))){
 				resp = false;
 				i = str.length();
 			}
@@ -158,17 +158,17 @@ class Is{
 	 */
 
 	public static boolean isReal(String str){
-		int contador = 0, ponto = 1;
+		int contador = 0, ponto = 0;
 		for(int i = 0; i < str.length(); i++){
-      char c = str.charAt(i);
-      if(isNum(c)){
-          contador++;
-      }
-      else if(c == '.' || c == ','){
-          ponto++;
-      }
-    }
-    return contador == str.length() && ponto == 1 ? true:false;
+      		char c = str.charAt(i);
+      		if(isNum(c)){
+          		contador++;
+      		}
+      		else if(c == '.' || c == ','){
+          		ponto++;
+      		}
+    	}
+    return (contador == str.length() - 1) && (ponto == 1) ? true:false;
   }
   
 //   Método main
