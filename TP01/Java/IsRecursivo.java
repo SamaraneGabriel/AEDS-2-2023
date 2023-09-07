@@ -140,10 +140,10 @@ class IsRecursivo{
 	//Método auxliar para passar o contador 	
 
 	public static boolean isConsoante(String str){
-		return isConsoante(str) ? isVogal(str,0):false;
+		return isAlpha(str) ? isConsoante(str,0):false;
 	}
 
-	/*Método recursivo que percorre uma String ALFA e retorna se ela é composta apenas por VOGAIS
+	/*Método recursivo que percorre uma String ALFA e retorna se ela é composta apenas por CONSOANTES
 	 *@param: String str
 	 *@return: boolean value
 	 */
@@ -163,21 +163,95 @@ class IsRecursivo{
 		}
 	}
 
+	//Método auxiliar para pssar o contador
+
+	public static boolean isInteger(String str){
+			return isInteger(str,0);
+		}
 	
+	/*Método Recursivo que percorre uma String NÚMERICA e retorna se ela é compõem um número inteiro
+	 *@param: String str
+	 *@return: boolean value
+	 */
 
+	public static boolean isInteger(String str, int i){
+		if(i < str.length()){
+			char c = str.charAt(i);
+			if(isNum(c)){
+				return isInteger(str,i+1);
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			return true;
+		}	
+	}	
 
+	//Método auxiliar para pssar o contador
+
+	public static boolean isReal(String str){
+			return isReal(str,0,0);
+		}
+	
+	/*Método Recursivo que percorre uma String NÚMERICA e retorna se ela é compõem um número real
+	 *@param: String str
+	 *@return: boolean value
+	 */
+
+	public static boolean isReal(String str, int i, int ponto){
+		if(i < str.length()){
+			char c = str.charAt(i);
+			if(isNum(c)){
+				return isReal(str,i+1,ponto);	
+			}
+			else if(c == '.' || c == ','){
+				ponto++;
+				return isReal(str,i + 1,ponto);
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			return ponto == 1 ? true:false;
+		}
+	}
 
 
 
 //   Método main
   public static void main(String[] args) {
-		
-		while(true){
-			String str = MyIO.readLine();
-			if(isVogal(toLowerString(str))){
-					MyIO.print("SUCESSO");
-			}
-		}
-
-	}	
+  
+      String str = "";
+    
+      while ((!strCmpr(str, "FIM")) && (!strCmpr(str, "fim"))) {
+          str = MyIO.readLine();
+          str = toLowerString(str);
+          if ((!strCmpr(str, "FIM")) && (!strCmpr(str, "fim")))  {
+              if (isVogal(str)) {
+                  MyIO.print("SIM ");
+              } else {
+                  MyIO.print("NAO ");
+              }
+              if (isConsoante(str)) {
+                  MyIO.print("SIM ");
+              } else {
+                  MyIO.print("NAO ");
+              }
+              if (isInteger(str)) {
+                  MyIO.print("SIM ");
+              } else {
+                  MyIO.print("NAO ");
+              }
+              if (isReal(str)) {
+                  MyIO.print("SIM ");
+              } else {
+                  MyIO.print("NAO ");
+              }
+              MyIO.print("\n");
+          }
+      }
+  }	
 }

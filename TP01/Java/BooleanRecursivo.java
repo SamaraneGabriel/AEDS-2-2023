@@ -1,5 +1,4 @@
-class Boolean{
-
+class BooleanRecursivo{
 
  		//Metodos indiretamente necessarios para realizar o exercicio
 		
@@ -62,7 +61,6 @@ class Boolean{
 
 //=================================================================================
 
-
 	/*Método para tratar as entradas da questão de modo a facilitar a manipulação
 	 *@param: String str
 	 *@return: String tratada
@@ -101,35 +99,12 @@ class Boolean{
 		return tratada;
 	 }
 
-	/*Método que resolve a expressão total, enviando cada expressão simples (expressão não aninhada) para ser avaliada pela função avaliar;
-	 *@param: String expr (tratada)
-	 * @return: Boolean resp
-	 */
-
-
-	public static boolean resolver(String expr){
-		expr = tratamento(expr);
-	
-		while(expr.contains("(")){
-			int indiceFechamento = expr.indexOf(')');
-			int indiceAbertura = expr.lastIndexOf('(',indiceFechamento);	
-
-			String subExpr = substring(expr,indiceAbertura - 1, indiceFechamento + 1);		//Captura somente o conteudo dentro de uma expressão simples, não composta por outrAS
-					
-			String resul = avaliar(subExpr);
-			expr = substring(expr,0,indiceAbertura-1) + resul + substring(expr,indiceFechamento+1,expr.length());	//Pega o resultado da subexpressão e o devolve para a expressão inicial					
-	
-		}
-		boolean resp = expr.equals("1");										
-		return resp;	
-
-	}
 
 	/*Método para avaliar o resultado da expressão previamente simplificada
 	 *@param: String expr (simplificada)
 	 *@return: Caracter na forma String representando 0 ou 1
 	 */
-
+			
 	public static String avaliar(String expr){
 		char operacao = expr.charAt(0);
 		switch(operacao){
@@ -156,18 +131,41 @@ class Boolean{
 				return "";
 		}
 	}
-
-	//Método principal
 	
+	public static boolean chamadaRecursiva(String expr){
+		return resolverRecursivo(tratamento(expr));
+	}
+
+	public static boolean resolverRecursivo(String expr){
+		if(expr.contains("(")){
+			int indiceFechamento = expr.indexOf(')');
+			int indiceAbertura = expr.lastIndexOf('(',indiceFechamento);	
+
+			String subExpr = substring(expr,indiceAbertura - 1, indiceFechamento + 1);		//Captura somente o conteudo dentro de uma expressão simples, não composta por outrAS
+					
+			String resul = avaliar(subExpr);
+			expr = substring(expr,0,indiceAbertura-1) + resul + substring(expr,indiceFechamento+1,expr.length());	//Pega o resultado da subexpressão e o devolve para a expressão inicial					
+
+			return resolverRecursivo(expr);
+		}
+		else{
+			return expr.equals("1");
+		}
+		
+	}
+
+
+
+			//Método principal
+
 	public static void main(String args[]){
 
-
-		 String str = "";
+ 		 String str = "";
 
 		while (!str.equals("0")) {
     			str = MyIO.readLine();
     			if (!str.equals("0")) {
-        			if (resolver(str)) {
+        			if (chamadaRecursiva(str)) {
             				MyIO.print(1 + "\n");
         				} 
 				else{
@@ -177,4 +175,8 @@ class Boolean{
 			}
 
 	}
+
+
+
+		
 }

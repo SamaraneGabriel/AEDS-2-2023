@@ -26,15 +26,18 @@ class Aleatorio{
 	
 	}
 
-	//Método previamente descrito em "PalindromoRecursivo.Java"
-
+	
+  /*Método para checar se duas Strings são idênticas
+    @param: String s1, String s2
+    @return: Booleano T||F
+  */
 	public static boolean strCmpr(String str1, String str2){
 		boolean resp = true;
 		if(str1.length() != str2.length()){
-			resp = false;
+			resp = false;	//condição para evitar erro de indexação devido a tamanhos diferentes de String
 		}
-		else{
-			for(int i = 0; i < str1.length(); i++){
+		else{																	//Compara caracter por caracter até encontrar um diferente, de tal forma retorna falso se achado
+			for(int i = 0; i < str1.length(); i++){					
 				if(str1.charAt(i) != str2.charAt(i)){
 					resp = false;
 				}
@@ -42,6 +45,7 @@ class Aleatorio{
 		}
 		return resp;
 	}
+
 
 	//Método principal
 

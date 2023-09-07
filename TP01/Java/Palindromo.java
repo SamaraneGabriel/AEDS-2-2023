@@ -11,7 +11,7 @@ class Palindromo{
 	*/
 	public static boolean isPalindromo(String str){
 		boolean resp = true;
-		for(int i = 0, j = str.length()-1; i < str.length()/2; i++,j--)
+		for(int i = 0, j = str.length()-1; i < str.length()/2; i++,j--)		//percorre a String buscando uma diferença, caso ache, quebra logicamente o loop e retorna falso
 		{
 			if(str.charAt(i) != str.charAt(j)){
 				resp = false;
@@ -29,10 +29,10 @@ class Palindromo{
 	public static boolean strCmpr(String str1, String str2){
 		boolean resp = true;
 		if(str1.length() != str2.length()){
-			resp = false;
+			resp = false;		//condição para evitar erro de indexação devido a tamanhos diferentes de String
 		}
-		else{
-			for(int i = 0; i < str1.length(); i++){
+		else{																	//Compara caracter por caracter até encontrar um diferente, de tal forma retorna falso se achado
+			for(int i = 0; i < str1.length(); i++){					
 				if(str1.charAt(i) != str2.charAt(i)){
 					resp = false;
 				}
